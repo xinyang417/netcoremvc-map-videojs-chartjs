@@ -7,4 +7,8 @@
         <RootNamespace>comp4945_aspnetcore_app</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\css\index.css" />
+    </ItemGroup>
+
 </Project>
