@@ -8,21 +8,33 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true"/>
-    @* <link rel="stylesheet" href="~/comp4945_aspnetcore_app.styles.css" asp-append-version="true"/> *@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">comp4945_aspnetcore_app</a>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-1">
+        <div class="container d-flex justify-content-between mx-5 mw-100">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/img/logo-no-bg.png" alt="" >
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+            <div class="d-flex w-100 align-items-center mx-5 px-5">
+                <div class="input-group mx-5 px-5">
+                    <input type="text" id="addressInput" class="form-control rounded-input" placeholder="Enter a city to start a new diary!">
+                    <button class="btn btn-fill rounded-button px-3" onclick="">Go</button>
+                </div>
+            </div>
+
+            <div class="navbar-collapse collapse justify-content-end">
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Diaries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -32,20 +44,23 @@
         </div>
     </nav>
 </header>
-<div class="container h-75">
-    <main role="main" class="h-100">
+<div class="container-fluid h-100 d-flex flex-column align-items-center justify-content-center py-4">
+    <main role="main" class="w-100">
         @RenderBody()
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2024 - Travel Diary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<footer class="footer text-muted">
+    <div class="container mx-5">
+        &copy; 2024 Travel Diary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["GoogleMapsApiKey"]&callback=initMap&libraries=places&v=weekly&solution_channel=GMP_CCS_autocomplete_v1" defer></script>
+
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -23,11 +23,20 @@ fetch(url)
             type: 'choropleth',
             data,
             options: {
+                showOutline: true,
+                showGraticule:true,
                 scales: {
                     projection: {
                         axis: 'x',
                         projection: 'equalEarth',
                     },
+                    color: {
+                        axis: 'x',
+                        legend: {
+                            position: 'top-left',
+                            align: 'bottom'
+                        },
+                    }
                 },
                 plugins: {
                     legend: {

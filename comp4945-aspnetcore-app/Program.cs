@@ -1,9 +1,19 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Add configuration
+builder.Configuration.AddJsonFile("appsettings.json");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Enable CORS globally
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
