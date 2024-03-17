@@ -2,12 +2,34 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="chartCard h-100 d-flex flex-column justify-content-center align-items-center mx-5">
-    <canvas id="myChart" class="d-flex align-items-center justify-content-center"></canvas>
+<div class="container mx-auto px-3 w-100">
+    <div class="row justify-content-between">
+        <div class="col-lg-4 col-md-4">        
+            <div class="chart-container m-3">
+                <h3 class="text-center">Doughnut Chart</h3>
+                <canvas id="doughnutChart" class="w-100 h-auto"></canvas>
+            </div>
+            <div class="chart-container m-3 mt-5">
+                <h3 class="text-center">Polar Area Chart</h3>
+                <canvas id="polarAreaChart" class="w-100 h-auto"></canvas>
+            </div>
+        </div>
+        
+        <div class="col-lg-8 col-md-8">
+            <div class="chart-container m-3">
+                <h3 class="text-center">Bar Chart</h3>
+                <canvas id="barChart" class="h-auto w-100"></canvas>
+            </div>
+            <div class="chart-container m-3">
+                <h3 class="text-center">Line Chart</h3>
+                <canvas id="lineChart" class="h-auto w-100"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/chartjs-chart-geo@4.3.0/build/index.umd.min.js"></script>
     <script src="~/js/index.js" asp-append-version="true"></script>
 }
