@@ -1,0 +1,30 @@
+@{
+    Layout = null; // Disable layout for this page
+}
+
+<!DOCTYPE html>
+
+@* @license *@
+@* Copyright 2019 Google LLC. All Rights Reserved. *@
+@* SPDX-License-Identifier: Apache-2.0 *@
+<html>
+<head>
+    <title>My TripBits</title>
+    <link rel="stylesheet" href="~/css/bits.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <video id="video" src="" controls autoplay loop></video>
+<div id="style-selector-control" class="map-control">
+    <select id="style-selector" class="selector-control">
+        <option value="night">Dark</option>
+        <option value="retro" selected="selected">Light</option>
+    </select>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0gm879o21t3fAHGq_GBV2YUVWC-K5-78&loading=async&callback=initMap&v=weekly&solution_channel=GMP_CCS_styledmap_v1" defer></script>
+<script type="module" src="~/js/bits.js" asp-append-version="true"></script>
+</body>
+</html>

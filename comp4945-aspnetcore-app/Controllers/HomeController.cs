@@ -33,6 +33,12 @@ namespace comp4945_aspnetcore_app.Controllers
             return View();
         }
 
+        public IActionResult Bits()
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
