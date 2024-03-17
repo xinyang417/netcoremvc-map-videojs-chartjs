@@ -7,24 +7,28 @@
 @* @license *@
 @* Copyright 2019 Google LLC. All Rights Reserved. *@
 @* SPDX-License-Identifier: Apache-2.0 *@
-<html>
+<html lang="en">
 <head>
-    <title>My TripBits</title>
+    <title>Bits</title>
     <link rel="stylesheet" href="~/css/bits.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 </head>
 <body>
     <div id="map"></div>
-    <video id="video" src="" controls autoplay loop></video>
+    <video id="video" class="video-js" src="" controls></video>
 <div id="style-selector-control" class="map-control">
     <select id="style-selector" class="selector-control">
         <option value="night">Dark</option>
         <option value="retro" selected="selected">Light</option>
     </select>
+    <button id="close-btn">Close Video</button>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0gm879o21t3fAHGq_GBV2YUVWC-K5-78&loading=async&callback=initMap&v=weekly&solution_channel=GMP_CCS_styledmap_v1" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["GoogleMapsApiKey"]&loading=async&callback=initMap&v=weekly&solution_channel=GMP_CCS_styledmap_v1" defer></script>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://unpkg.com/videojs-youtube/dist/Youtube.min.js"></script>
 <script type="module" src="~/js/bits.js" asp-append-version="true"></script>
 </body>
 </html>

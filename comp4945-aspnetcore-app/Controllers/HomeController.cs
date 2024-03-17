@@ -16,28 +16,27 @@ namespace comp4945_aspnetcore_app.Controllers
             _configuration = configuration;
         }
 
-        public IActionResult Index()
+        private string GetGoogleMapsApiKey()
         {
-            // Retrieve the API key from appsettings.json
             string googleMapsApiKey = _configuration["GoogleMapsApiKey"];
-            
-            // Check if the API key is missing or invalid
             if (string.IsNullOrEmpty(googleMapsApiKey))
             {
-                // Log the error
                 _logger.LogError("Google Maps API key is missing or invalid.");
             }
+            return googleMapsApiKey;
+        }
 
-            // Use the API key as needed
-            ViewData["GoogleMapsApiKey"] = googleMapsApiKey;
+        public IActionResult Index()
+        {
+            ViewData["GoogleMapsApiKey"] = GetGoogleMapsApiKey();
             return View();
         }
 
         public IActionResult Bits()
         {
+            ViewData["GoogleMapsApiKey"] = GetGoogleMapsApiKey();
             return View();
         }
-
 
         public IActionResult Privacy()
         {
@@ -50,4 +49,5 @@ namespace comp4945_aspnetcore_app.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }

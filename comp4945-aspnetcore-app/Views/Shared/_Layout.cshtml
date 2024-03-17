@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - Home</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true"/>
@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-1">
         <div class="container d-flex justify-content-between mx-5 my-2 mw-100">
             <div class="d-flex w-50 align-items-center">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="margin-right: 0;">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     TripBits
                 </a>
             </div>
@@ -25,7 +25,7 @@
             </button>
             <div class="d-flex w-100 align-items-center mx-5">
                 <div class="input-group">
-                    <input type="text" id="addressInput" class="form-control rounded-input" placeholder="Enter a city to start a new diary!">
+                    <input type="text" id="addressInput" class="form-control rounded-input" placeholder="Enter a city to start a new bit!">
                     <button class="btn btn-fill rounded-button px-3" onclick="">Go</button>
                 </div>
             </div>

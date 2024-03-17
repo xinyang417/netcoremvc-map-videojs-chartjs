@@ -1,15 +1,10 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
 let map;
+const player = videojs('video'); // Initialize Video.js player
 
 function initMap() {
-    // Create the map with no initial style specified.
-    // It therefore has default styling.
+    // Create the map with no initial style specified
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 34.0522, lng: -170 }, 
+        center: { lat: 34.0522, lng: -175 }, 
         zoom: 3, 
         mapTypeControl: false,
     });
@@ -18,12 +13,12 @@ function initMap() {
     const locations = [
         { lat: 49.2827, lng: -123.1207, name: "Vancouver", videoUrl: "" },
         { lat: 43.6532, lng: -79.3832, name: "Toronto", videoUrl: "" },
-        { lat: 22.3193, lng: 114.1694, name: "Hong Kong", videoUrl: "" },
+        { lat: 22.3193, lng: 114.1694, name: "Hong Kong", videoUrl: "http://www.youtube.com/watch?v=gYO1uk7vIcc" },
         { lat: 30.0493, lng: 101.9625, name: "Garzê Tibetan Autonomous Prefecture", videoUrl: "/media/garze.mov"  },
         { lat: 40.7128, lng: -74.0060, name: "New York City", videoUrl: "" }, 
         { lat: 34.0522, lng: -118.2437, name: "Los Angeles", videoUrl: "" },
         { lat: 35.7796, lng: -78.6382, name: "Raleigh", videoUrl: "" },
-        { lat: 35.5951, lng: -82.5515, name: "Asheville", videoUrl: "" },
+        { lat: -8.4095, lng: 115.1889, name: "Bali", videoUrl: "https://www.youtube.com/watch?v=oBFQ0ZuhXrg" },
         { lat: 20.6534, lng: -105.2253, name: "Puerto Vallarta", videoUrl: "/media/pv.mov"  },
     ];
 
@@ -37,12 +32,29 @@ function initMap() {
 
         // Add click event listener to each marker
         marker.addListener('click', () => {
-            if(location.videoUrl !== "") {
-                const video = document.getElementById('video');
-                video.src = location.videoUrl;
+            const videoUrl = location.videoUrl;
+            
+            if (videoUrl !== "") {
+                if (videoUrl.includes("youtube.com")) {
+                    // Set YouTube video as source
+                    player.src({
+                        techOrder: "youtube",
+                        type: "video/youtube",
+                        src: videoUrl
+                    });
+                } else {
+                    // Set local video file as source
+                    player.src({
+                        type: "video/mp4",
+                        src: videoUrl
+                    });
+                }
+                player.play();
                 document.getElementById('video').style.display = 'block';
+                document.getElementById('close-btn').style.display = 'block';
             }
         });
+
     });
 
     // Add a style-selector control to the map.
@@ -54,6 +66,8 @@ function initMap() {
     const styleSelector = document.getElementById("style-selector");
 
     map.setOptions({ styles: styles[styleSelector.value] });
+
+        
     // Apply new JSON when the user selects a different style.
     styleSelector.addEventListener("change", () => {
         map.setOptions({ styles: styles[styleSelector.value] });
@@ -262,7 +276,8 @@ const styles = {
 window.initMap = initMap;
 
 // Close video player on click
-document.getElementById('video').addEventListener('click', () => {
-        document.getElementById('video').style.display = 'none';
-        document.getElementById('video').stop();
+document.getElementById('close-btn').addEventListener('click', () => {
+    player.pause();
+    document.getElementById('video').style.display = 'none';
+    document.getElementById('close-btn').style.display = 'none';
 });
